@@ -52,11 +52,5 @@ bool operator== (char const& val, Element const& x){
 }
 
 void Element::setVal(char newVal) {
-    if (newVal =='X' || newVal == 'O'){
         Element::val = newVal;
-    } else{
-        IllegalCharException ce;
-        ce.setCh(newVal);
-        throw ce;
-    }
 }
