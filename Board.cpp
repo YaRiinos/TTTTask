@@ -45,7 +45,7 @@ Board& Board::operator=(const Board& obj)
     else{
         for (int i = 0; i <boardSize ; ++i) {
             for (int j = 0; j <boardSize ; ++j) {
-                board[i][j]=obj.board[i][j];
+                board[i][j].setVal(obj.board[i][j]);
             }
 
         }
@@ -53,6 +53,7 @@ Board& Board::operator=(const Board& obj)
 
     return *this;
 }
+
 
 Board& Board::operator=(char newVal)
 {
