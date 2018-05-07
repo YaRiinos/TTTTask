@@ -32,14 +32,13 @@ public:
     friend ostream& operator<<(ostream& os, const Board& obj);
 
     Board& operator=(const Board& obj);
-    Board& operator=(const char newVal);
+    Board& operator=(char newVal);
     Element& operator [](Coordinate index);
+    char operator[] (Coordinate c) const;
 
-    char operator[] (Coordinate c) const {
-        if (c.getRow()>=boardSize || c.getRow()<0 || c.getCol()>=boardSize || c.getCol()<0)
-            throw IllegalCoordinateException{c};
-        return board[c.getRow()][c.getCol()];
-    }
+    friend bool operator== (Board const& X, Board const& Y);
+    friend bool operator!= (Board const& X, Board const& Y);
+
 
     bool full();
 
