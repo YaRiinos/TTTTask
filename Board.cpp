@@ -37,15 +37,15 @@ ostream& operator<<(ostream& os, const Board& obj)
 
 Board& Board::operator=(const Board& obj)
 {
-    if(obj.boardSize!=boardSize){
+    if(obj.boardSize!=this->boardSize){
         IllegalCoordinateException ce{obj.boardSize};
         throw ce;
     }
 
     else{
-        for (int i = 0; i <boardSize ; ++i) {
-            for (int j = 0; j <boardSize ; ++j) {
-                board[i][j].setVal(obj.board[i][j]);
+        for (int i = 0; i <this->boardSize ; ++i) {
+            for (int j = 0; j <this->boardSize ; ++j) {
+                this->board[i][j].setVal(obj.board[i][j]);
             }
 
         }
