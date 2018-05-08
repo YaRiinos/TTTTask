@@ -11,6 +11,16 @@ Board::Board()
     }
 }
 
+Board :: Board(Board& other){
+    this -> boardSize = other.boardSize;
+
+    for(int i = 0; i < this->boardSize;i++){
+        for(int j = 0; j < this->boardSize;j++){
+            this ->board [i][j] = other.board[i][j];
+        }
+    }
+}
+
 Board::Board(int newSize)
 {
     boardSize = newSize;
