@@ -44,11 +44,9 @@ Board& Board::operator=(const Board& obj)
     }
 
     else{
-        for (int i = 0; i <boardSize ; ++i) {
-            for (int j = 0; j <boardSize ; ++j) {
-                board[i][j].setVal(obj.board[i][j]);
-            }
-
+//      
+        for (size_t i = 0; i < boardSize; i++) {
+            board.push_back(obj.board[i]);
         }
     }
 
