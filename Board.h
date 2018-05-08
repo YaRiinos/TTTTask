@@ -28,6 +28,8 @@ public:
     Board(int size);
     ~Board();
 
+     void Initialize();
+    
     int size()const;
 
     friend ostream& operator<<(ostream& os, const Board& obj);
