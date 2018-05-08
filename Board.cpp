@@ -27,7 +27,7 @@ ostream& operator<<(ostream& os, const Board& obj)
 {
     for (int i = 0; i <obj.boardSize ; ++i) {
         for (int j = 0; j <obj.boardSize ; ++j) {
-            cout<<obj.board[i][j]<< " ";
+            cout<<obj.board[i][j];
         }
         cout<<endl;
     }
@@ -37,15 +37,15 @@ ostream& operator<<(ostream& os, const Board& obj)
 
 Board& Board::operator=(const Board& obj)
 {
-    if(obj.boardSize!=this->boardSize){
+    if(obj.boardSize!=boardSize){
         IllegalCoordinateException ce{obj.boardSize};
         throw ce;
     }
 
     else{
-        for (int i = 0; i <this->boardSize ; ++i) {
-            for (int j = 0; j <this->boardSize ; ++j) {
-                this->board[i][j].setVal(obj.board[i][j]);
+        for (int i = 0; i <boardSize ; ++i) {
+            for (int j = 0; j <boardSize ; ++j) {
+                board[i][j].setVal(obj.board[i][j]);
             }
 
         }
@@ -53,7 +53,6 @@ Board& Board::operator=(const Board& obj)
 
     return *this;
 }
-
 
 Board& Board::operator=(char newVal)
 {
