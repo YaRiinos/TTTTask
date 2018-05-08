@@ -5,29 +5,20 @@ using namespace std;
 Board::Board()
 {
     boardSize = 2;
-    for (size_t i = 0; i < boardSize; i++)
-    {
-        board.push_back(vector<Element>(boardSize));
-    }
+
+    Initialize();
 }
 
 Board :: Board(Board& other){
-    this -> boardSize = other.boardSize;
+    boardSize = other.boardSize;
 
-    for(int i = 0; i < this->boardSize;i++){
-        for(int j = 0; j < this->boardSize;j++){
-            this ->board [i][j] = other.board[i][j];
-        }
-    }
+    Initialize();
 }
 
 Board::Board(int newSize)
 {
     boardSize = newSize;
-    for (size_t i = 0; i < boardSize; i++)
-    {
-        board.push_back(vector<Element>(boardSize));
-    }
+    Initialize();
 }
 
 Board::~Board()
@@ -68,7 +59,7 @@ Board& Board::operator=(char newVal)
 {
     if(newVal == '.')
     {
-       *this=Board{boardSize};
+       Initialize();
     }else{
         IllegalCharException ce;
         ce.setCh(newVal);
@@ -142,4 +133,13 @@ bool operator!= (Board const& x, Board const& y){
     }
 
     return false;
+}
+
+void Board::Initialize() {
+
+    for (size_t i = 0; i < boardSize; i++)
+    {
+        board.push_back(vector<Element>(boardSize));
+    }
+
 }
