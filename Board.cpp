@@ -23,17 +23,6 @@ Board::Board(int newSize)
 Board::~Board()
 {}
 
-ostream& operator<<(ostream& os, const Board& obj)
-{
-    for (int i = 0; i <obj.boardSize ; ++i) {
-        for (int j = 0; j <obj.boardSize ; ++j) {
-            cout<<obj.board[i][j];
-        }
-        cout<<endl;
-    }
-    return os;
-
-}
 
 Board& Board::operator=(const Board& obj)
 {
@@ -45,7 +34,6 @@ Board& Board::operator=(const Board& obj)
     else{
         Initialize();
         board=obj.board;
-
     }
 
     return *this;
