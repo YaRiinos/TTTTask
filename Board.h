@@ -24,6 +24,7 @@ public:
 
 public:
     Board();
+    Board(Board& ob);
     Board(int size);
     ~Board();
 
