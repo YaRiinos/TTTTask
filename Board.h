@@ -16,13 +16,12 @@ using namespace std;
 
 class Board
 {
-private:
+public:
     vector<vector<Element> > board;
     int boardSize;
-public:
+
     void setBoardSize(int boardSize);
 
-public:
     Board();
     Board(Board& ob);
     Board(int size);
@@ -31,8 +30,6 @@ public:
      void Initialize();
     
     int size()const;
-
-    friend ostream& operator<<(ostream& os, const Board& obj);
 
     Board& operator=(const Board& obj);
     Board& operator=(char newVal);
@@ -46,4 +43,14 @@ public:
     bool full();
 
 };
+
+inline ostream&  operator<<(ostream& out, const Board& a){
+    for(int i = 0; i < a.size();i++){
+        for(int j = 0; j < a.size();j++){
+            out << a.board[i][j];
+        }
+        out<<endl;
+    }
+    return out;
+}
 #endif //TICTACTOE_BOARD_H
