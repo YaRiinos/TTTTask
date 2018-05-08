@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Board.h"
 using namespace std;
 
@@ -12,7 +11,7 @@ Board::Board()
 Board :: Board(Board& other){
     boardSize = other.boardSize;
 
-    Initialize();
+    board=other.board;
 }
 
 Board::Board(int newSize)
@@ -44,10 +43,9 @@ Board& Board::operator=(const Board& obj)
     }
 
     else{
-//      
-        for (size_t i = 0; i < boardSize; i++) {
-            board.push_back(obj.board[i]);
-        }
+        Initialize();
+        board=obj.board;
+
     }
 
     return *this;
