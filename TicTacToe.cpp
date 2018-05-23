@@ -100,55 +100,56 @@ bool TicTacToe::checkWinner(Player &thePlayer) {
 
 
 bool TicTacToe::rowIsFull(char charP) {
-    char winnerChar='N';
-    for (int i = 0; i < gameBoard.size(); ++i) {
-        for (int j=1; j< gameBoard.size(); ++j) {
-            if (gameBoard[{i,j}]==gameBoard[{i,j-1}] && gameBoard[{i,j}]!='.'){
-                if (j==gameBoard.size()-1){
-                    winnerChar=charP;
-                }
-            }
-            else
+    for (int i = 0; i <  this -> gameBoard.size() ; i++){
+        bool same = true;
+        for (int j = 1; j < this -> gameBoard.size(); j++){
+            if ((this->gameBoard[{i,0}] != this->gameBoard[{i,j}]) || (gameBoard[{i,0}] == '.' )){
+                same = false;
                 break;
+            }
+        }
+
+        if(same){
+            return true;
         }
     }
-    return winnerChar == charP;
+    return false;
 
 
 }
 
 bool TicTacToe::colIsFull(char charP) {
-    char winnerChar='N';
-    for (int i = 0; i < gameBoard.size(); ++i) {
-        for (int j=1; j< gameBoard.size(); ++j) {
-            if (gameBoard[{j,i}]==gameBoard[{j-1,i}] && gameBoard[{i,j}]!='.'){
-                if (j==gameBoard.size()-1){
-                    winnerChar=charP;
-                }
-            }
-            else
+    for (int j = 0; j < this->getBoardSize(); j++){
+        bool same = true;
+        for (int i = 1; i < this -> getBoardSize(); i++){
+            if ((gameBoard[{0,j}] != gameBoard[{i,j}]) || (gameBoard[{0,j}] == '.' )){
+                same = false;
                 break;
+            }
+        }
+
+        if(same){
+            return true;
+
         }
     }
-    return winnerChar == charP;
+    return false;
 
 
 }
 
 bool TicTacToe::firstDiagonalIsFull(char charP) {
-    char winnerChar='N';
-
-    for (int j=1; j< gameBoard.size(); ++j) {
-        if (gameBoard[{j,j}]==gameBoard[{j-1,j-1}] && gameBoard[{j,j}]!='.'){
-            if (j==gameBoard.size()-1){
-                winnerChar=charP;
-            }
-        }
-        else
+    bool same = true;
+    for (int i = 1; i < this->getBoardSize(); i++){
+        if (gameBoard[{0,0}] != gameBoard[{i,i}]){
+            same = false;
             break;
+        }
     }
-
-    return winnerChar == charP;
+    if(same){
+        return true;
+    }
+    return false;
 
 }
 
