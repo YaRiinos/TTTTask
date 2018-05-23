@@ -10,13 +10,10 @@ using namespace std;
 
 //Class to handle illegal char insertions. Using function 'setCh' by the Board Class '=' operator function.
 class IllegalCharException:public exception{
-private:
-    char ch;
-public:
-    //Function for exception throwing, returns the value in ch.
-    char theChar() const;
+    char temp;
 
-    //Function for setting value in ch.
-    void setCh(const char& c);
+public:
+    const char* theChar() const throw ();
+    void setCh(char);
 };
 #endif //TICTACTOE_ILLEGALCHAREXCEPTION_H
