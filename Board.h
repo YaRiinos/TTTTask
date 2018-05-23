@@ -28,6 +28,8 @@ public:
     ~Board();
 
      void Initialize();
+     void del();
+
     
     int size()const;
 
