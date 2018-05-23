@@ -17,7 +17,7 @@ using namespace std;
 class Board
 {
 public:
-    vector<vector<Element> > board;
+    Element** board;
     int boardSize;
 
     void setBoardSize(int boardSize);
@@ -28,8 +28,6 @@ public:
     ~Board();
 
      void Initialize();
-     void del();
-
     
     int size()const;
 
@@ -44,6 +42,7 @@ public:
 
     bool full();
 
+    void del();
 };
 
 inline ostream&  operator<<(ostream& out, const Board& a){
