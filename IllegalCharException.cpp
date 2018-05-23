@@ -1,11 +1,9 @@
 #include "IllegalCharException.h"
 
 
-char IllegalCharException::theChar() const{
-    return ch;
+const char* IllegalCharException :: theChar() const throw (){
+    const char* ans =  &temp;
+    return ans;
 }
 
-//Function for setting value in ch.
-void IllegalCharException::setCh(const char& c){
-    this->ch=c;
-}
+void IllegalCharException :: setCh(char t){ this ->temp = t;}
