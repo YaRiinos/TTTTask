@@ -9,35 +9,57 @@ Board::Board()
 }
 
 Board :: Board(Board& other){
-    boardSize = other.boardSize;
+    this -> boardSize = other.boardSize;
+    this -> board = new Element*[other.boardSize];
 
-    board=other.board;
+    for (int i = 0; i < this->boardSize; ++i){
+        this->board[i] = new Element[other.boardSize];
+    }
+    for(int i = 0; i < this->boardSize; i++){
+        for(int j = 0; j < this->boardSize; j++){
+            this->board[i][j] = other.board[i][j];
+        }
+    }
 }
 
 Board::Board(int newSize)
 {
-    boardSize = newSize;
+    this-> boardSize = newSize;
+    this -> board = new Element*[this->boardSize];
+
+    for (int i = 0; i < this->boardSize; ++i)
+        this->board[i] = new Element[this->boardSize];
+
     Initialize();
 }
 
 Board::~Board()
-{
+{del();}
+
+
+void Board:: del(){  //distructor
+
+    for (int i = 0; i < boardSize; i++){ //free
+        delete[] board[i];
+    }
+    delete[] board;
 }
-
-
 
 Board& Board::operator=(const Board& obj)
 {
-    if(obj.boardSize!=boardSize){
-        IllegalCoordinateException ce{obj.boardSize};
-        throw ce;
+    if (this==&obj){
+        return *this;
     }
 
-    else{
-        Initialize();
-        board=obj.board;
-    }
+    del();
 
+    boardSize = obj.boardSize;
+    board = new Element*[boardSize];
+    for (int i = 0; i < boardSize; i++){
+        board[i] = new Element[boardSize];
+        for (int j = 0; j < boardSize; j++)
+            board[i][j] = obj.board[i][j];
+    }
     return *this;
 }
 
@@ -45,7 +67,7 @@ Board& Board::operator=(char newVal)
 {
     if(newVal == '.')
     {
-       Initialize();
+        *this=Board{boardSize};
     }else{
         IllegalCharException ce;
         ce.setCh(newVal);
@@ -122,10 +144,11 @@ bool operator!= (Board const& x, Board const& y){
 }
 
 void Board::Initialize() {
-
-    for (size_t i = 0; i < boardSize; i++)
-    {
-        board.push_back(vector<Element>(boardSize));
+    Element a;
+    for (int x = 0; x < this->boardSize; ++x){
+        for (int y = 0; y < this->boardSize; ++y){
+            this->board[x][y] = a;
+        }
     }
 
 }
