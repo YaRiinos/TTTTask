@@ -20,15 +20,14 @@ public:
     Element** board;
     int boardSize;
 
-    void setBoardSize(int boardSize);
-
     Board();
     Board(Board& ob);
     Board(int size);
     ~Board();
 
-     void Initialize();
-    
+    void Initialize();
+    void Delete();
+
     int size()const;
 
     Board& operator=(const Board& obj);
@@ -40,9 +39,6 @@ public:
     friend bool operator!= (Board const& X, Board const& Y);
 
 
-    bool full();
-
-    void del();
 };
 
 inline ostream&  operator<<(ostream& out, const Board& a){
