@@ -14,7 +14,6 @@ public:
     const string name() const override { return "Yarin Knafo, Eran Arviv, Maor Cohen"; }
     const Coordinate play(const Board& board) override;
 
-    int turnNum(const Board &board);
 };
 
 
