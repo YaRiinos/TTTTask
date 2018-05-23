@@ -34,12 +34,12 @@ Board::Board(int newSize)
 }
 
 Board::~Board()
-{del();}
+{Delete();}
 
 
-void Board:: del(){  //distructor
+void Board:: Delete(){
 
-    for (int i = 0; i < boardSize; i++){ //free
+    for (int i = 0; i < boardSize; i++){
         delete[] board[i];
     }
     delete[] board;
@@ -51,7 +51,7 @@ Board& Board::operator=(const Board& obj)
         return *this;
     }
 
-    del();
+    Delete();
 
     boardSize = obj.boardSize;
     board = new Element*[boardSize];
@@ -94,20 +94,6 @@ int Board::size() const {
     return boardSize;
 }
 
-bool Board::full() {
-    for (int i = 0; i < boardSize; ++i) {
-        for (int j = 0; j < boardSize; ++j) {
-            if(board[i][j]=='.') return false;
-        }
-    }
-
-    return true;
-}
-
-void Board::setBoardSize(int boardSize) {
-    Board::boardSize = boardSize;
-}
-
 char Board::operator[](Coordinate c) const {
     if (c.getRow()>=boardSize || c.getRow()<0 || c.getCol()>=boardSize || c.getCol()<0)
         throw IllegalCoordinateException{c};
@@ -145,6 +131,7 @@ bool operator!= (Board const& x, Board const& y){
 
 void Board::Initialize() {
     Element a;
+
     for (int x = 0; x < this->boardSize; ++x){
         for (int y = 0; y < this->boardSize; ++y){
             this->board[x][y] = a;
