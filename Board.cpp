@@ -21,8 +21,18 @@ Board::Board(int newSize)
 }
 
 Board::~Board()
-{}
+{
+del();
+}
 
+
+void Board:: del(){  //distructor
+
+    for (int i = 0; i < num; i++){ //free
+	    delete[] mat[i];
+    }
+	delete[] mat;
+}
 
 Board& Board::operator=(const Board& obj)
 {
@@ -32,7 +42,7 @@ Board& Board::operator=(const Board& obj)
     }
 
     else{
-        Initialize();
+        del();
         board=obj.board;
     }
 
