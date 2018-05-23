@@ -3,42 +3,54 @@
 
 void TicTacToe::play(Player &xPlayer, Player &oPlayer) {
 
+    //X char for the player who start
     this->setTurn('X');
+
+    //Init the game board
     this->gameBoard = '.';
+
+    //Set chars
     xPlayer.myChar = 'X';
     oPlayer.myChar = 'O';
+
 
     this->xPlayer = &xPlayer;
     this->oPlayer = &oPlayer;
 
 
-    int countX = 0, countO = 0;
-    Coordinate coordinate;
-    Coordinate c{0,0};
+    int numOfX = 0, numOfO = 0;
+    Coordinate playerMove, c{0,0};
 
-    do{
+    for (int i = 0; i < boardSize*boardSize; ++i) {
         //X turn
         if(this->getTurn() == 'X'){
+
+            //Check if player gonna do illegal move
             if(typeid(*this->xPlayer) == typeid(ExceptionPlayer)){
                 setWinner('O');
                 break;
             }
-            coordinate = xPlayer.play(this->gameBoard);
 
-            //illigal player
-            if(gameBoard[coordinate] != '.'){
+            //Get the player move
+            playerMove = xPlayer.play(this->gameBoard);
+
+            //If player try to override another move
+            if(gameBoard[playerMove] != '.'){
                 setWinner('O');
                 break;
             }
-            this->gameBoard[coordinate] = 'X';
-            countX++;
-            //check win
-            if(countX >= getBoardSize()){
+
+            //Put X on his place and increase X counter by 1
+            this->gameBoard[playerMove] = 'X';
+            numOfX++;
+
+            //Check if win
+            if(numOfX >= getBoardSize()){
                 if (this->checkWinner(xPlayer)){
                     setWinner('X');
                     break;
                 }
-                else if((countX+countO) == (getBoardSize()*getBoardSize())){
+                else if((numOfX +numOfO) == (getBoardSize()*getBoardSize())){
                     setWinner('O');
                     break;
                 }
@@ -50,21 +62,27 @@ void TicTacToe::play(Player &xPlayer, Player &oPlayer) {
 
             //O turn
         else{
+
+            //Check if player gonna do illegal move
             if(typeid(*this->oPlayer) == typeid(ExceptionPlayer)){
                 setWinner('X');
                 break;
             }
 
-            coordinate = oPlayer.play(this->gameBoard);
-            if(gameBoard[coordinate] != '.'){
+            //Get player move
+            playerMove = oPlayer.play(this->gameBoard);
+
+            //If player try to override another move
+            if(gameBoard[playerMove] != '.'){
                 setWinner('X');
                 break;
             }
 
-            gameBoard[coordinate] = 'O';
-            countO++;
+            //Put O on his place and increase O counter by 1
+            gameBoard[playerMove] = 'O';
+            numOfO++;
 
-            if(countO >= getBoardSize()){
+            if(numOfO >= getBoardSize()){
                 if (this->checkWinner(oPlayer)){
                     setWinner('O');
                     break;
@@ -72,13 +90,15 @@ void TicTacToe::play(Player &xPlayer, Player &oPlayer) {
             }
             setTurn('X');
         }
-    }while((countO+countX) != (gameBoard.size()*gameBoard.size()));
+    }
 
-    if((countO+countX) == (gameBoard.size()*gameBoard.size())){
+    //Check if even, if so then O won
+    if((numOfO+numOfX) == (gameBoard.size()*gameBoard.size())){
         setWinner('O');
     }
 }
-//
+
+
 bool TicTacToe::checkWinner(Player &thePlayer) {
 
     if(rowIsFull(thePlayer.myChar))
