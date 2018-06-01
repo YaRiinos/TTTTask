@@ -28,7 +28,7 @@ public:
     Board(int size);
     ~Board();
 
-    void Initialize();
+    void Initialize(int size);
     void Delete();
 
     string draw(int pixel);
