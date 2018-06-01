@@ -9,7 +9,7 @@ Element::Element()
 
 Element::Element(char newVal)
 {
-    if (newVal =='X' || newVal == 'O'){
+    if (newVal =='X' || newVal == 'O' || newVal == '.'){
         val = newVal;
     } else{
         IllegalCharException ce;
@@ -31,7 +31,7 @@ ostream& operator<<(ostream& os, const Element& obj)
 
 
 void Element::operator= (char newVal){
-    if (newVal =='X' || newVal == 'O'){
+    if (newVal =='X' || newVal == 'O' || newVal == '.'){
         val = newVal;
     } else{
         IllegalCharException ce;
