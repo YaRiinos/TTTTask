@@ -5,7 +5,7 @@ Board::Board()
 {
     boardSize = 2;
 
-    Initialize();
+    Initialize(2);
 }
 
 Board :: Board(Board& other){
@@ -30,7 +30,7 @@ Board::Board(int newSize)
     for (int i = 0; i < this->boardSize; ++i)
         this->board[i] = new Element[this->boardSize];
 
-    Initialize();
+    Initialize(newSize);
 }
 
 Board::~Board()
@@ -129,14 +129,13 @@ bool operator!= (Board const& x, Board const& y){
     return false;
 }
 
-void Board::Initialize() {
-    Element a;
+void Board::Initialize(int size) {
+    boardSize = size;
 
-    for (int x = 0; x < this->boardSize; ++x){
-        for (int y = 0; y < this->boardSize; ++y){
-            this->board[x][y] = a;
-        }
-    }
+    //Create 2D array of cells
+    board = new Element*[boardSize];
+    for(int i = 0; i < boardSize; i++)
+        board[i] = new Element[boardSize];
 
 }
 
