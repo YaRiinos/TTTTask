@@ -6,11 +6,14 @@
 #define TICTACTOE_BOARD_H
 
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <math.h>
 #include "Element.h"
 #include "Coordinate.h"
 #include "IllegalCoordinateException.h"
 #include "IllegalCharException.h"
+#include "RGB.h"
 
 using namespace std;
 
@@ -28,6 +31,8 @@ public:
     void Initialize();
     void Delete();
 
+    string draw(int pixel);
+
     int size()const;
 
     Board& operator=(const Board& obj);
@@ -38,6 +43,7 @@ public:
     friend bool operator== (Board const& X, Board const& Y);
     friend bool operator!= (Board const& X, Board const& Y);
 
+    friend istream& operator>> (istream& is, Board& X);
 
 };
 
