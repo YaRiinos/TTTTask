@@ -142,8 +142,19 @@ void Board::Initialize() {
 
 string Board::draw(int pixel) {
 
-    //Define Img properties
-    string fileName = "boardPic.ppm";
+    int picNum=1;
+    string fileName = "boardPic"+to_string(picNum)+".ppm";
+
+    while(true){
+        ifstream f("board"+to_string(picNum)+".ppm");
+        if(!f.good())
+            break;
+        else{
+            picNum++;
+        }
+    }
+    fileName = "board"+to_string(picNum)+".ppm";
+
     ofstream thePic(fileName, ios::out | ios::binary);
     thePic << "P6" << endl << pixel <<" " << pixel << endl << 255 << endl;
 
